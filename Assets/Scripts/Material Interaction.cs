@@ -6,11 +6,11 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour
 {
 
+    // Declare the scripts for the workstations to access their "materialGameobject" variable
     public ForgeScript forgeScript;
     public AnvilScript anvilScript;
     public WorkbenchScript workbenchScript;
     public GameObject originalMaterialGameObject, materialGameObjectForOverlay;
-    // Declare the script for the forge to access it's "hasMaterial" variable
 
     private bool hasMaterial = false;
 
@@ -40,23 +40,33 @@ public class NewBehaviourScript : MonoBehaviour
     // if the player is in range of a colldier
     private void OnTriggerStay(Collider collider)
     {
-        if (collider.tag == "material" && Input.GetKeyDown("E")) // if the tag of whatever we interacted with is the material
+        // if the tag of whatever we interacted with is the material
+        if (collider.tag == "material" && Input.GetKeyDown("E")) 
         {
             materialGameObjectForOverlay = cloneGameOjbect(collider.gameObject);
             hasMaterial = true;
         }
 
-        if (collider.tag == "forge" && Input.GetKeyDown ("E")) // if the tag of whatever we interacted with is the forge
+        // if the tag of whatever we interacted with is the forge
+        if (collider.tag == "forge" && Input.GetKeyDown ("E")) 
         {
             giveWorkstationMaterial(materialGameObjectForOverlay, forgeScript.materialGameobject);
         }
 
-        if (collider.tag == "anvil" && Input.GetKeyDown ("E")) // if the tag of whatever we interacted with is the forge
+        // if the tag of whatever we interacted with is the anvil
+        if (collider.tag == "anvil" && Input.GetKeyDown ("E")) 
         {
             giveWorkstationMaterial(materialGameObjectForOverlay, anvilScript.materialGameobject);
         }
 
-        if (collider.tag == "workbench" && Input.GetKeyDown ("E")) // if the tag of whatever we interacted with is the forge
+        // if the forge has a material and is interacted with
+        if (collider.tag == "anvil" && Input.GetMouseButtonDown(1) && forgeScript.materialGameobject != null)
+        {
+
+        }
+
+        // if the tag of whatever we interacted with is the workbench
+        if (collider.tag == "workbench" && Input.GetKeyDown ("E")) 
         {
             giveWorkstationMaterial(materialGameObjectForOverlay, workbenchScript.materialGameobject);
         }

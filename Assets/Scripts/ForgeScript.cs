@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class ForgeScript : MonoBehaviour
 {
+    public float rateOfHeatChange;
 
     public GameObject materialGameobject;
+    public metalScript metalScript;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        metalScript = materialGameobject.GetComponent<metalScript>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        metalScript.heat += rateOfHeatChange + Time.deltaTime;
     }
 }
