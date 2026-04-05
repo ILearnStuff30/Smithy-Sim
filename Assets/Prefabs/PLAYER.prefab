@@ -134,7 +134,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &1391349113550950735
 MonoBehaviour:
@@ -150,6 +150,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2372743713998286247}
   speed: 5
+  jumpPower: 1
+  playerDrag: 5
+  playerHeight: 2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  isGrounded: 0
+  canJump: 0
   horizontalInput: 0
   verticalInput: 0
   playerTransform: {fileID: 3831119884591396342}
