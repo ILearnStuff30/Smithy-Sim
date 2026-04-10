@@ -22,15 +22,17 @@ public class NewBehaviourScript : MonoBehaviour
         return gameObject;
     }
 
-    private void giveWorkstationMaterial(GameObject materialGameObjectForOverlay, GameObject workstationMaterialContainer)
+    public void giveWorkstationMaterial(GameObject materialGameObjectForOverlay, GameObject workstationMaterialContainer)
     {
 
         if (workstationMaterialContainer = null)
         {
+            Debug.Log("Dropped off");
             workstationMaterialContainer = cloneGameOjbect(materialGameObjectForOverlay);
             hasMaterial = false;
         } else
         {
+            Debug.Log("Picked up");
             materialGameObjectForOverlay = cloneGameOjbect(workstationMaterialContainer);
             workstationMaterialContainer = null;
             hasMaterial = true;
@@ -41,20 +43,21 @@ public class NewBehaviourScript : MonoBehaviour
     private void OnTriggerStay(Collider collider)
     {
         // if the tag of whatever we interacted with is the material
-        if (collider.tag == "material" && Input.GetKeyDown("E")) 
+        if (collider.tag == "material" && Input.GetKey(KeyCode.E)) 
         {
             materialGameObjectForOverlay = cloneGameOjbect(collider.gameObject);
             hasMaterial = true;
+            Destroy(collider.gameObject);
         }
 
         // if the tag of whatever we interacted with is the forge
-        if (collider.tag == "forge" && Input.GetKeyDown ("E")) 
+        if (collider.tag == "forge" && Input.GetKey(KeyCode.E)) 
         {
             giveWorkstationMaterial(materialGameObjectForOverlay, forgeScript.materialGameobject);
         }
 
         // if the tag of whatever we interacted with is the anvil
-        if (collider.tag == "anvil" && Input.GetKeyDown ("E")) 
+        if (collider.tag == "anvil" && Input.GetKey(KeyCode.E)) 
         {
             giveWorkstationMaterial(materialGameObjectForOverlay, anvilScript.materialGameobject);
         }
