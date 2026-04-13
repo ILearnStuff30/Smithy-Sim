@@ -10,9 +10,9 @@ public class NewBehaviourScript : MonoBehaviour
     public ForgeScript forgeScript;
     public AnvilScript anvilScript;
     public WorkbenchScript workbenchScript;
-    public GameObject originalMaterialGameObject, materialGameObjectForOverlay;
+    public GameObject materialContainer;
 
-    private bool hasMaterial = false;
+    private bool hasMaterial, pickedUp = false;
 
 
     private GameObject cloneGameOjbect(GameObject target)
@@ -43,23 +43,23 @@ public class NewBehaviourScript : MonoBehaviour
     private void OnTriggerStay(Collider collider)
     {
         // if the tag of whatever we interacted with is the material
-        if (collider.tag == "material" && Input.GetKey(KeyCode.E)) 
+        if (collider.tag == "material" && Input.GetKey(KeyCode.E) && !pickedUp) 
         {
-            materialGameObjectForOverlay = cloneGameOjbect(collider.gameObject);
+            materialContainer = collider.gameObject;
+            pickedUp = true;
             hasMaterial = true;
-            Destroy(collider.gameObject);
         }
 
         // if the tag of whatever we interacted with is the forge
         if (collider.tag == "forge" && Input.GetKey(KeyCode.E)) 
         {
-            giveWorkstationMaterial(materialGameObjectForOverlay, forgeScript.materialGameobject);
+            giveWorkstationMaterial(materialContainer, forgeScript.materialGameobject);
         }
 
         // if the tag of whatever we interacted with is the anvil
         if (collider.tag == "anvil" && Input.GetKey(KeyCode.E)) 
         {
-            giveWorkstationMaterial(materialGameObjectForOverlay, anvilScript.materialGameobject);
+            giveWorkstationMaterial(materialContainer, anvilScript.materialGameobject);
         }
 
         // if the forge has a material and is interacted with
@@ -71,7 +71,18 @@ public class NewBehaviourScript : MonoBehaviour
         // if the tag of whatever we interacted with is the workbench
         if (collider.tag == "workbench" && Input.GetKeyDown ("E")) 
         {
-            giveWorkstationMaterial(materialGameObjectForOverlay, workbenchScript.materialGameobject);
+            giveWorkstationMaterial(materialContainer, workbenchScript.materialGameobject);
         }
+    }
+
+    public void Update()
+    {
+
+        if (materialContainer != null)
+        {
+            // If the player has the metal, make it appear in the overlay
+            materialContainer.transform.SetParent(transform, false);
+        }
+
     }
 }
