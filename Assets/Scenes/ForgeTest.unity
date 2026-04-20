@@ -614,11 +614,11 @@ Transform:
   m_GameObject: {fileID: 794448383}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.8462636, y: 0.96628, z: 4.622617}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.020408, y: 0.7142856, z: 1.020408}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1679984139}
+  m_Father: {fileID: 1693222804}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &794448387
 MonoBehaviour:
@@ -1047,6 +1047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rateOfHeatChange: 0
+  forgeTime: 0
 --- !u!135 &1192830397
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1339,7 +1340,6 @@ Transform:
   m_Children:
   - {fileID: 1599850197}
   - {fileID: 1225247807}
-  - {fileID: 794448386}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1693222798 stripped
@@ -1352,19 +1352,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3831119884591396342, guid: 6d3f9bb1a864bfb42afb0634f90aba0e, type: 3}
   m_PrefabInstance: {fileID: 1696681212}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1693222805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1693222798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 595516e9e80e36741a9e0395a225c8bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraPos: {fileID: 794448386}
 --- !u!114 &1693222811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1393,6 +1380,10 @@ PrefabInstance:
     - target: {fileID: 1391349113550950735, guid: 6d3f9bb1a864bfb42afb0634f90aba0e, type: 3}
       propertyPath: playerHeight
       value: 2.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372743713998286247, guid: 6d3f9bb1a864bfb42afb0634f90aba0e, type: 3}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 3831119884591396342, guid: 6d3f9bb1a864bfb42afb0634f90aba0e, type: 3}
       propertyPath: m_LocalScale.x
@@ -1450,13 +1441,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4313334267025235017, guid: 6d3f9bb1a864bfb42afb0634f90aba0e, type: 3}
+      propertyPath: m_Direction
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 171743047267273459, guid: 6d3f9bb1a864bfb42afb0634f90aba0e, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3831119884591396342, guid: 6d3f9bb1a864bfb42afb0634f90aba0e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1693222805}
+      addedObject: {fileID: 794448386}
+    m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 171743047267273459, guid: 6d3f9bb1a864bfb42afb0634f90aba0e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1693222811}
