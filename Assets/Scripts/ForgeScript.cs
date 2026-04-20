@@ -5,17 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class ForgeScript : MonoBehaviour
 {
-    //public float rateOfHeatChange;
+    public float rateOfHeatChange;
 
-    //private metalScript metalScript;
+    private metalScript metalScript;
 
-    //private void Awake()
-    //{
-    //    // metalScript = materialGameobject.GetComponent<metalScript>();
-    //}
+    GameObject materialGameobject;
 
-    //public void Update()
-    //{
-    //    metalScript.heat += rateOfHeatChange + Time.deltaTime;
-    //}
+    private void Awake()
+    {
+        metalScript = materialGameobject.GetComponent<metalScript>();
+    }
+
+    public void Update()
+    {
+        if(this.gameObject.GetComponentInChildren<metalScript>() != null)
+        {
+            Debug.Log("Heating up");
+            metalScript.heat += rateOfHeatChange + Time.deltaTime;
+        }
+    }
 }
