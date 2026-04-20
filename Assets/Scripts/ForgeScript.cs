@@ -1,21 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ForgeScript : MonoBehaviour
 {
-    public float rateOfHeatChange;
+    //public float rateOfHeatChange;
 
-    public GameObject materialGameobject;
-    public metalScript metalScript;
+    //private metalScript metalScript;
 
-    private void Start()
-    {
-        metalScript = materialGameobject.GetComponent<metalScript>();
-    }
+    //private void Awake()
+    //{
+    //    // metalScript = materialGameobject.GetComponent<metalScript>();
+    //}
 
-    public void Update()
-    {
-        metalScript.heat += rateOfHeatChange + Time.deltaTime;
-    }
+    //public void Update()
+    //{
+    //    metalScript.heat += rateOfHeatChange + Time.deltaTime;
+    //}
 }

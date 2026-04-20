@@ -1,77 +1,53 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    public GameManager gameManager;
 
-    // Declare the scripts for the workstations to access their "materialGameobject" variable
-    public ForgeScript forgeScript;
-    public AnvilScript anvilScript;
-    public WorkbenchScript workbenchScript;
-    public GameObject originalMaterialGameObject, materialGameObjectForOverlay;
+    private string[] workstationTags = { "forge", "anvil", "workbench" };
 
-    private bool hasMaterial = false;
-
-
-    private GameObject cloneGameOjbect(GameObject target)
+    public void giveWorkstationMaterial(Collider collider)
     {
-        GameObject returnGameObject = Instantiate(target);
-        Destroy(target);
-        return gameObject;
-    }
-
-    public void giveWorkstationMaterial(GameObject materialGameObjectForOverlay, GameObject workstationMaterialContainer)
-    {
-
-        if (workstationMaterialContainer = null)
+        if (gameManager.objectContainingMetal == this.gameObject)
         {
-            Debug.Log("Dropped off");
-            workstationMaterialContainer = cloneGameOjbect(materialGameObjectForOverlay);
-            hasMaterial = false;
-        } else
+
+            gameManager.changeMetalHolder(collider.gameObject, collider.transform.position, new Vector3(collider.transform.rotation.x, collider.transform.rotation.y, collider.transform.rotation.z));
+
+            Debug.Log("Metal given to |" + collider.tag + "| from player");
+
+        }
+        else if (gameManager.objectContainingMetal == GameObject.FindGameObjectsWithTag(collider.tag)[0])
+        // FindGameObjectWithTag returns an array, but were only ever expecting 1 result
         {
-            Debug.Log("Picked up");
-            materialGameObjectForOverlay = cloneGameOjbect(workstationMaterialContainer);
-            workstationMaterialContainer = null;
-            hasMaterial = true;
+
+            gameManager.changeMetalHolder(this.gameObject, Vector3.zero, -Vector3.forward);
+
+            Debug.Log("Metal given to player from |" + collider.tag + "|");
+
         }
     }
 
     // if the player is in range of a colldier
     private void OnTriggerStay(Collider collider)
     {
+
         // if the tag of whatever we interacted with is the material
-        if (collider.tag == "material" && Input.GetKey(KeyCode.E)) 
+        if (collider.tag == "material" && Input.GetKeyDown(KeyCode.E)) 
         {
-            materialGameObjectForOverlay = cloneGameOjbect(collider.gameObject);
-            hasMaterial = true;
-            Destroy(collider.gameObject);
+            gameManager.changeMetalHolder(this.gameObject, Vector3.zero, -Vector3.forward); // This is wrong!!
+            
+            Debug.Log("Metal given to player from world");
         }
 
-        // if the tag of whatever we interacted with is the forge
-        if (collider.tag == "forge" && Input.GetKey(KeyCode.E)) 
+        if (workstationTags.Contains<String>(collider.tag))
         {
-            giveWorkstationMaterial(materialGameObjectForOverlay, forgeScript.materialGameobject);
-        }
-
-        // if the tag of whatever we interacted with is the anvil
-        if (collider.tag == "anvil" && Input.GetKey(KeyCode.E)) 
-        {
-            giveWorkstationMaterial(materialGameObjectForOverlay, anvilScript.materialGameobject);
-        }
-
-        // if the forge has a material and is interacted with
-        if (collider.tag == "anvil" && Input.GetMouseButtonDown(1) && forgeScript.materialGameobject != null)
-        {
-
-        }
-
-        // if the tag of whatever we interacted with is the workbench
-        if (collider.tag == "workbench" && Input.GetKeyDown ("E")) 
-        {
-            giveWorkstationMaterial(materialGameObjectForOverlay, workbenchScript.materialGameobject);
+            giveWorkstationMaterial(collider);
         }
     }
 }
