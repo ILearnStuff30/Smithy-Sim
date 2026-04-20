@@ -10,22 +10,30 @@ public class NewBehaviourScript : MonoBehaviour
 {
     public GameManager gameManager;
 
+    // Stores what tags that the user will interact with as workstations
     private string[] workstationTags = { "forge", "anvil", "workbench" };
 
+    // Function to give or take back the metal using collider data, given it matches one of the workstation tags
     public void giveWorkstationMaterial(Collider collider)
     {
+        // If the player currently has the metal
         if (gameManager.objectContainingMetal == this.gameObject)
         {
 
+            // Function to tell GameManager who has the metal gameobject.
             gameManager.changeMetalHolder(collider.gameObject, collider.transform.position, new Vector3(collider.transform.rotation.x, collider.transform.rotation.y, collider.transform.rotation.z));
 
             Debug.Log("Metal given to |" + collider.tag + "| from player");
 
+
         }
+
+        // If the workstation has the material
+        // FindGameObjectWithTag returns an array, but were only ever expecting 1 result, hence the array reference
         else if (gameManager.objectContainingMetal == GameObject.FindGameObjectsWithTag(collider.tag)[0])
-        // FindGameObjectWithTag returns an array, but were only ever expecting 1 result
         {
 
+            // Function to tell GameManager who has the metal gameobject.
             gameManager.changeMetalHolder(this.gameObject, Vector3.zero, -Vector3.forward);
 
             Debug.Log("Metal given to player from |" + collider.tag + "|");
@@ -40,12 +48,13 @@ public class NewBehaviourScript : MonoBehaviour
         // if the tag of whatever we interacted with is the material
         if (collider.tag == "material" && Input.GetKeyDown(KeyCode.E)) 
         {
-            gameManager.changeMetalHolder(this.gameObject, Vector3.zero, -Vector3.forward); // This is wrong!!
+            gameManager.changeMetalHolder(this.gameObject, Vector3.zero, -Vector3.forward); // This is inaccurate!
             
             Debug.Log("Metal given to player from world");
         }
 
-        if (workstationTags.Contains<String>(collider.tag))
+        // if the tag of whatever we interacted with is a workstation
+        if (workstationTags.Contains<String>(collider.tag) && Input.GetKeyDown(KeyCode.E))
         {
             giveWorkstationMaterial(collider);
         }
