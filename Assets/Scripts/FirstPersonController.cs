@@ -53,6 +53,7 @@ public class FirstPersonController : MonoBehaviour
 
         SpeedControl();
         JumpCheck();
+
     }
 
     private void FixedUpdate()

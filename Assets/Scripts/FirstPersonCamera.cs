@@ -22,7 +22,7 @@ public class FirstPersonCamera : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         //Gets the mouse input and sets the mouse sensitivity
         float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensX;
