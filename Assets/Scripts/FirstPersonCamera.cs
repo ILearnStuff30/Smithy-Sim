@@ -22,19 +22,22 @@ public class FirstPersonCamera : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         //Gets the mouse input and sets the mouse sensitivity
-        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensX;
-        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensY;
+        float mouseX = Input.GetAxis("Mouse X") * sensX;
+        float mouseY = Input.GetAxis("Mouse Y") * sensY;
 
-        yRotation += mouseX;
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        transform.localEulerAngles = Vector3.right * xRotation;
 
         //Rotate the camera and the direction of the player rigidbody
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        direction.rotation = Quaternion.Euler(0, yRotation, 0);
+
+        direction.Rotate(Vector3.up * mouseX);
+
+        //transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        //direction.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
 }
