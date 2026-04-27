@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1efe4a45c4294d948b7080a8e9b49089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialGameobject: {fileID: 0}
+  gameManager: {fileID: 1012819588}
 --- !u!135 &144230287
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1047,6 +1047,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f7b78e2ce21b64082775e5b8576b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rateOfHeatChange: 0
+  forgeTime: 0
 --- !u!135 &1192830397
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1376,6 +1378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1012819588}
+  anvilScript: {fileID: 144230286}
 --- !u!135 &1693222817
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -21,16 +21,18 @@ public class ForgeScript : MonoBehaviour
             Debug.Log("Heating up");
             forgeTime += Time.deltaTime;
 
+            // Funciton to increase the metal's temperature faster over time
             metalScript.heat = Mathf.Pow(Mathf.Exp(1), forgeTime / 15);
+
             if (metalScript.heat > 50)
             {
+                // Function to increase the metal's stress faster with more heat
                 metalScript.stress += Mathf.Pow(Mathf.Exp(1), (metalScript.heat - 70) / 13) * Time.deltaTime;
             }
 
             Debug.Log("The metal's heat is "+ metalScript.heat);
-            // Forging temperature for steel is 1230 degrees celcius
         }
-
-
     }
 }
+
+// Forging temperature for steel is 1230 degrees celcius

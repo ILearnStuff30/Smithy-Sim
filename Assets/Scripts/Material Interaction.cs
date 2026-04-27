@@ -9,6 +9,7 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour
 {
     public GameManager gameManager;
+    public AnvilScript anvilScript;
 
     // Stores what tags that the user will interact with as workstations
     private string[] workstationTags = { "forge", "anvil", "workbench" };
@@ -22,10 +23,6 @@ public class NewBehaviourScript : MonoBehaviour
 
             // Function to tell GameManager who has the metal gameobject.
             gameManager.changeMetalHolder(collider.gameObject, collider.transform.position, new Vector3(collider.transform.rotation.x, collider.transform.rotation.y, collider.transform.rotation.z));
-
-            Debug.Log("Metal given to |" + collider.tag + "| from player");
-
-
         }
 
         // If the workstation has the material
@@ -35,8 +32,6 @@ public class NewBehaviourScript : MonoBehaviour
 
             // Function to tell GameManager who has the metal gameobject.
             gameManager.changeMetalHolder(this.gameObject, Vector3.zero, -Vector3.forward);
-
-            Debug.Log("Metal given to player from |" + collider.tag + "|");
 
         }
     }
@@ -49,8 +44,11 @@ public class NewBehaviourScript : MonoBehaviour
         if (collider.tag == "material" && Input.GetKeyDown(KeyCode.E)) 
         {
             gameManager.changeMetalHolder(this.gameObject, Vector3.zero, -Vector3.forward); // This is inaccurate!
-            
-            Debug.Log("Metal given to player from world");
+        }
+
+        if (collider.tag == "anvil" && Input.GetMouseButtonDown(0))
+        {
+            anvilScript.hammerMaterial();
         }
 
         // if the tag of whatever we interacted with is a workstation

@@ -19,4 +19,12 @@ public class metalScript : MonoBehaviour
     {
         stress += stressChange;
     }
+
+    private void Update()
+    {
+        if (stress > 100f)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }

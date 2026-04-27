@@ -4,18 +4,11 @@ using UnityEngine;
 
 public class AnvilScript : MonoBehaviour
 {
+    public GameManager gameManager;
 
-    public GameObject materialGameobject;
-
-    // Start is called before the first frame update
-    void Start()
+    public void hammerMaterial()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Function to change the shape of the material
+        GetComponentInChildren<metalScript>().stress += 5f;
     }
 }
