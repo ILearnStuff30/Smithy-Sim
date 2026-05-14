@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEditor.Build.Content;
 using UnityEngine;
 
@@ -13,60 +14,87 @@ public class NewBehaviourScript : MonoBehaviour
 
     // Stores what tags that the user will interact with as workstations
     private string[] workstationTags = { "forge", "anvil", "workbench" };
-    private string[] collisionTags;
+    public ArrayList collisionTags = new ArrayList();
 
     // Function to give or take back the metal using collider data, given it matches one of the workstation tags
-    public void giveWorkstationMaterial(Collider collider)
+    public void giveWorkstationMaterial(GameObject targetWorkstation)
     {
         // If the player currently has the metal
         if (gameManager.objectContainingMetal == this.gameObject)
         {
-
             // Function to tell GameManager who has the metal gameobject.
-            gameManager.changeMetalHolder(collider.gameObject, collider.transform.position, new Vector3(collider.transform.rotation.x, collider.transform.rotation.y, collider.transform.rotation.z));
+            gameManager.changeMetalHolder(targetWorkstation, targetWorkstation.transform.position, targetWorkstation.transform.rotation);
         }
 
         // If the workstation has the material
         // FindGameObjectWithTag returns an array, but were only ever expecting 1 result, hence the array reference
-        else if (gameManager.objectContainingMetal == GameObject.FindGameObjectsWithTag(collider.tag)[0])
+        else if (gameManager.objectContainingMetal == GameObject.FindGameObjectsWithTag(targetWorkstation.tag)[0])
         {
-
             // Function to tell GameManager who has the metal gameobject.
-            gameManager.changeMetalHolder(this.gameObject, Vector3.zero, -Vector3.forward);
+            gameManager.changeMetalHolder(this.gameObject, Vector3.zero, targetWorkstation.transform.rotation);
 
         }
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown("E"))
-    //    {
-    //        foreach (string tag in workstationTags)
-    //        {
-    //            if (tag == "")
-    //        } 
-    //    }
-    //}
-
-    // if the player is in range of a colldier
-    private void OnTriggerStay(Collider collider)
+    private void Update()
     {
 
-        // if the tag of whatever we interacted with is the material
-        if (collider.tag == "material" && Input.GetKeyDown(KeyCode.E)) 
+        // Responsible for stopping repeatid true results more than one loop
+        bool expectInput = true;
+
+        string currentTags = "";
+
+        if (Input.GetKeyDown(KeyCode.E) && expectInput == true)
         {
-            gameManager.changeMetalHolder(this.gameObject, Vector3.zero, -Vector3.forward); // This is inaccurate!
+            // Disallows repeats of this loop until GetKeyUp has been triggered
+            expectInput = false;
+
+            // For every tag in collisionTags
+            foreach (string tag in collisionTags)
+            {
+
+                currentTags += tag + ", ";
+
+                if (workstationTags.Contains<String>(tag))
+                {
+                    giveWorkstationMaterial(GameObject.FindGameObjectsWithTag(tag)[0]);
+                } else if (tag == "material")
+                {
+                    gameManager.changeMetalHolder(this.gameObject, Vector3.zero, transform.rotation);
+                    collisionTags.Remove("material");
+                }
+            }
+
+            Debug.Log("Checked Tags: " + currentTags);
         }
 
-        if (collider.tag == "anvil" && Input.GetMouseButtonDown(0))
+        if (Input.GetKeyUp(KeyCode.E))
         {
-            anvilScript.hammerMaterial();
+            expectInput = true;
         }
+    }
 
-        // if the tag of whatever we interacted with is a workstation
-        if (workstationTags.Contains<String>(collider.tag) && Input.GetKeyDown(KeyCode.E))
+    // if the player enters a collider, add the tag of the collider to an ArrayList (unless it is untagged)
+    private void OnTriggerStay(Collider collider)
+    {
+        // Add the tag of the collider to the ArrayList if it is not Untagged
+        if (collider.tag != "Untagged")
         {
-            giveWorkstationMaterial(collider);
+            if (!collisionTags.Contains(collider.tag))
+            {
+                collisionTags.Add(collider.tag);
+                Debug.Log("Added Tag: " + collider.tag);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider collider)
+    {
+        // Remove the tag of the collider to the ArrayList if it is not Untagged
+        if (collider.tag != "Untagged")
+        {
+            collisionTags.Remove(collider.tag);
+            Debug.Log("Removed Tag: " + collider.tag);
         }
     }
 }

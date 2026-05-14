@@ -18,7 +18,6 @@ public class ForgeScript : MonoBehaviour
         metalScript = this.gameObject.GetComponentInChildren<metalScript>();
         if (this.gameObject.GetComponentInChildren<metalScript>() != null)
         {
-            Debug.Log("Heating up");
             forgeTime += Time.deltaTime;
 
             // Funciton to increase the metal's temperature faster over time
@@ -29,8 +28,6 @@ public class ForgeScript : MonoBehaviour
                 // Function to increase the metal's stress faster with more heat
                 metalScript.stress += Mathf.Pow(Mathf.Exp(1), (metalScript.heat - 70) / 13) * Time.deltaTime;
             }
-
-            Debug.Log("The metal's heat is "+ metalScript.heat);
         }
     }
 }
