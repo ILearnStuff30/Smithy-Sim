@@ -32,7 +32,6 @@ public class NewBehaviourScript : MonoBehaviour
         {
             // Function to tell GameManager who has the metal gameobject.
             gameManager.changeMetalHolder(this.gameObject, Vector3.zero, targetWorkstation.transform.rotation);
-
         }
     }
 
@@ -42,19 +41,14 @@ public class NewBehaviourScript : MonoBehaviour
         // Responsible for stopping repeatid true results more than one loop
         bool expectInput = true;
 
-        string currentTags = "";
-
         if (Input.GetKeyDown(KeyCode.E) && expectInput == true)
         {
             // Disallows repeats of this loop until GetKeyUp has been triggered
             expectInput = false;
 
-            // For every tag in collisionTags
+            // For every tag in collisionTags, check the tag to see if it is a tag associated with a workstation or the material.
             foreach (string tag in collisionTags)
             {
-
-                currentTags += tag + ", ";
-
                 if (workstationTags.Contains<String>(tag))
                 {
                     giveWorkstationMaterial(GameObject.FindGameObjectsWithTag(tag)[0]);
@@ -64,8 +58,6 @@ public class NewBehaviourScript : MonoBehaviour
                     collisionTags.Remove("material");
                 }
             }
-
-            Debug.Log("Checked Tags: " + currentTags);
         }
 
         if (Input.GetKeyUp(KeyCode.E))
@@ -77,9 +69,10 @@ public class NewBehaviourScript : MonoBehaviour
     // if the player enters a collider, add the tag of the collider to an ArrayList (unless it is untagged)
     private void OnTriggerStay(Collider collider)
     {
-        // Add the tag of the collider to the ArrayList if it is not Untagged
+        // Adds the tag of the collider to the ArrayList if it is not "Untagged"
         if (collider.tag != "Untagged")
         {
+            // Ensures we aren't adding duplicates to the arraylist
             if (!collisionTags.Contains(collider.tag))
             {
                 collisionTags.Add(collider.tag);
@@ -90,7 +83,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void OnTriggerExit(Collider collider)
     {
-        // Remove the tag of the collider to the ArrayList if it is not Untagged
+        // Remove the tag of the collider to the ArrayList if it is not "Untagged"
         if (collider.tag != "Untagged")
         {
             collisionTags.Remove(collider.tag);
