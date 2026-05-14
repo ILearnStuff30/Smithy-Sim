@@ -13,6 +13,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     // Stores what tags that the user will interact with as workstations
     private string[] workstationTags = { "forge", "anvil", "workbench" };
+    private string[] collisionTags;
 
     // Function to give or take back the metal using collider data, given it matches one of the workstation tags
     public void giveWorkstationMaterial(Collider collider)
@@ -35,6 +36,17 @@ public class NewBehaviourScript : MonoBehaviour
 
         }
     }
+
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown("E"))
+    //    {
+    //        foreach (string tag in workstationTags)
+    //        {
+    //            if (tag == "")
+    //        } 
+    //    }
+    //}
 
     // if the player is in range of a colldier
     private void OnTriggerStay(Collider collider)
