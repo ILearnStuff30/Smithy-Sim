@@ -16,10 +16,9 @@ public class metalScript : MonoBehaviour
     public Material metalMaterial;
     public void changeHeat(int heatChange)
     {
-        heatChangeColor = Color.Lerp(metalMaterial.color, new Color(255f, 101f, 0f), Mathf.PingPong(0, heat));
+        heat += heatChange;
 
         metalMaterial.color = heatChangeColor;
-        heat += heatChange;
     }
     public void changeStress(int stressChange)
     {
@@ -28,6 +27,8 @@ public class metalScript : MonoBehaviour
 
     private void Update()
     {
+
+
         if (stress > 100f)
         {
             Destroy(this.gameObject);

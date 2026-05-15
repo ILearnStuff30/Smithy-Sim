@@ -511,6 +511,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3147340201450281086, guid: e26b5a7050bf15841b37f74a9f2673cb, type: 3}
+      propertyPath: metalMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: ce3c6b51ff128c24d961aef9866200dc, type: 2}
     - target: {fileID: 4839959673916865928, guid: e26b5a7050bf15841b37f74a9f2673cb, type: 3}
       propertyPath: m_Name
       value: Metal
@@ -519,6 +523,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: material
       objectReference: {fileID: 0}
+    - target: {fileID: 5039853967677219381, guid: e26b5a7050bf15841b37f74a9f2673cb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce3c6b51ff128c24d961aef9866200dc, type: 2}
     m_RemovedComponents:
     - {fileID: 5405171796790227710, guid: e26b5a7050bf15841b37f74a9f2673cb, type: 3}
     m_RemovedGameObjects: []
