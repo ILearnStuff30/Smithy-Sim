@@ -14,11 +14,14 @@ public class metalScript : MonoBehaviour
     public Color heatChangeColor;
 
     public Material metalMaterial;
-    public void changeHeat(int heatChange)
-    {
-        heat += heatChange;
 
-        metalMaterial.color = heatChangeColor;
+    public float heatColorFactor;
+
+    public Color colorTarget;
+    public void changeHeat(int heatChange)
+    { 
+        heat += heatChange;
+        
     }
     public void changeStress(int stressChange)
     {

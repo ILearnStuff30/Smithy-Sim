@@ -19,7 +19,6 @@ public class ForgeScript : MonoBehaviour
         if (this.gameObject.GetComponentInChildren<metalScript>() != null)
         {
             forgeTime += Time.deltaTime;
-
             // Funciton to increase the metal's temperature faster over time
             metalScript.heat = Mathf.Pow(Mathf.Exp(1), forgeTime / 15);
 
@@ -28,6 +27,11 @@ public class ForgeScript : MonoBehaviour
                 // Function to increase the metal's stress faster with more heat
                 metalScript.stress += Mathf.Pow(Mathf.Exp(1), (metalScript.heat - 70) / 13) * Time.deltaTime;
             }
+            
+
+            metalScript.heatChangeColor = Color.Lerp(metalScript.heatChangeColor, metalScript.colorTarget, Mathf.PingPong(Time.deltaTime, metalScript.heat)/metalScript.heatColorFactor);
+            metalScript.metalMaterial.color = metalScript.heatChangeColor;
+            Debug.Log("Color Change to:"+ metalScript.heatChangeColor);
         }
     }
 }
