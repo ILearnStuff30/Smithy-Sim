@@ -11,8 +11,14 @@ public class metalScript : MonoBehaviour
 
     public float stress = 0;
 
+    public Color heatChangeColor;
+
+    public Material metalMaterial;
     public void changeHeat(int heatChange)
     {
+        heatChangeColor = Color.Lerp(metalMaterial.color, new Color(255f, 101f, 0f), Mathf.PingPong(0, heat));
+
+        metalMaterial.color = heatChangeColor;
         heat += heatChange;
     }
     public void changeStress(int stressChange)

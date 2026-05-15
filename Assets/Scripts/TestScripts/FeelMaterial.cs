@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Feedbacks;
 
-public class FeelMaterialTest : MonoBehaviour
+public class FeelMaterial : MonoBehaviour
 {
     public MMF_Player materialFeedback;
 
@@ -12,7 +12,7 @@ public class FeelMaterialTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,11 +20,13 @@ public class FeelMaterialTest : MonoBehaviour
     {
         if (!isInterpolating)
         {
-            materialFeedback?.PauseFeedbacks();
+            materialFeedback.Revert();
+            //materialFeedback?.PauseFeedbacks();
         }
         else
         {
-            materialFeedback?.ResumeFeedbacks();
+            materialFeedback.Revert();
+            //materialFeedback?.ResumeFeedbacks();
         }
     }
 }
