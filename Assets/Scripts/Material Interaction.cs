@@ -59,6 +59,16 @@ public class NewBehaviourScript : MonoBehaviour
                 }
             }
         }
+        if (Input.GetMouseButtonDown(0) && expectInput == true)
+        {
+            foreach (string tag in collisionTags)
+            {
+                if (tag == "anvil")
+                {
+                    anvilScript.hammerMaterial();
+                }
+            }
+        }
 
         if (Input.GetKeyUp(KeyCode.E))
         {
@@ -76,7 +86,6 @@ public class NewBehaviourScript : MonoBehaviour
             if (!collisionTags.Contains(collider.tag))
             {
                 collisionTags.Add(collider.tag);
-                Debug.Log("Added Tag: " + collider.tag);
             }
         }
     }
@@ -87,7 +96,6 @@ public class NewBehaviourScript : MonoBehaviour
         if (collider.tag != "Untagged")
         {
             collisionTags.Remove(collider.tag);
-            Debug.Log("Removed Tag: " + collider.tag);
         }
     }
 }

@@ -7,34 +7,43 @@ public class metalScript : MonoBehaviour
 {
 
     // Measured in degrees celcius. Room temperature is 20-22 degrees Celcius.
-    public float heat = 21;
-
-    public float stress = 0;
+    public float heat, stress, completion = 0;
+    public float heatColorFactor;
 
     public Color heatChangeColor;
+    public Color colorTarget;
 
     public Material metalMaterial;
 
-    public float heatColorFactor;
 
-    public Color colorTarget;
-    public void changeHeat(int heatChange)
+    public void changeHeat(float heatChange)
     { 
-        heat += heatChange;
-        
+        heat += heatChange;   
     }
-    public void changeStress(int stressChange)
+    public void changeStress(float stressChange)
     {
         stress += stressChange;
+    }
+    public void changeCompletion(float completionChange)
+    {
+        completion += completionChange;
+    }
+    public void quench()
+    {
+        stress += 25f; // The amount of stress that is caused from quenching
+        heat = 0f;
     }
 
     private void Update()
     {
-
-
         if (stress > 100f)
         {
             Destroy(this.gameObject);
+        }
+
+        if (heat > 0)
+        {
+            changeHeat(-0.5f * Time.deltaTime);
         }
     }
 }
