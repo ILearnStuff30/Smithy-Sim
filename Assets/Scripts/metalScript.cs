@@ -11,7 +11,7 @@ public class metalScript : MonoBehaviour
     public float heatColorFactor;
 
     public Color heatChangeColor;
-    public Color colorTarget;
+    public Color[] colorTargets;
 
     public Material metalMaterial;
 
