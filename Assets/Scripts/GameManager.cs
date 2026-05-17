@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
         metal.transform.rotation = relativeRotation;
 
-        Debug.Log("Gameobject reference: " + metal.tag);
+        Debug.Log(metal.transform.position);
     }
 
     private void Start()
