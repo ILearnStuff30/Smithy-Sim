@@ -23,7 +23,7 @@ public class NewBehaviourScript : MonoBehaviour
         if (gameManager.objectContainingMetal == this.gameObject)
         {
             // Function to tell GameManager who has the metal gameobject.
-            gameManager.changeMetalHolder(targetWorkstation, targetWorkstation.transform.position, targetWorkstation.transform.rotation);
+            gameManager.changeMetalHolder(targetWorkstation);
         }
 
         // If the workstation has the material
@@ -31,7 +31,7 @@ public class NewBehaviourScript : MonoBehaviour
         else if (gameManager.objectContainingMetal == GameObject.FindGameObjectsWithTag(targetWorkstation.tag)[0])
         {
             // Function to tell GameManager who has the metal gameobject.
-            gameManager.changeMetalHolder(this.gameObject, Vector3.zero, targetWorkstation.transform.rotation);
+            gameManager.changeMetalHolder(this.gameObject);
         }
     }
 
@@ -54,7 +54,7 @@ public class NewBehaviourScript : MonoBehaviour
                     giveWorkstationMaterial(GameObject.FindGameObjectsWithTag(tag)[0]);
                 } else if (tag == "material")
                 {
-                    gameManager.changeMetalHolder(this.gameObject, Vector3.zero, transform.rotation);
+                    gameManager.changeMetalHolder(this.gameObject);
                     collisionTags.Remove("material");
                 }
             }
