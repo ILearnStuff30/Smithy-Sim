@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: 46fa0c6787776194d9ae3ae9aae6d38e
+guid: 8b4fd987d3b9526439421a845ee7b721
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BarrelNuts
+    second: {fileID: 2100000, guid: f46d6f7ed14f23a4fb30c61df7161e85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BarrelNuts2
+    second: {fileID: 2100000, guid: 1029a6fa937b5f847a088f1408157923, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BarrelSupport
+    second: {fileID: 2100000, guid: 58c25a766324d5c4fb031efe3be1d361, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BarrelWood
+    second: {fileID: 2100000, guid: 9574712acb0ddec41aba96d1a6793e86, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -35,7 +55,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.25
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -90,7 +110,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.25
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
