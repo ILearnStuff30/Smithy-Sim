@@ -36,6 +36,8 @@ public class metalScript : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("Transform.position = " + transform.position);
+
         if (stress > 100f)
         {
             Destroy(this.gameObject);
