@@ -10,6 +10,8 @@ public class metalScript : MonoBehaviour
     public float heat, stress, completion = 0;
     public float heatColorFactor;
 
+    public bool quenched = false;
+
     public Color heatChangeColor;
     public Color[] colorTargets;
 
@@ -30,20 +32,19 @@ public class metalScript : MonoBehaviour
     }
     public void quench()
     {
+        quenched = true;
         stress += 25f; // The amount of stress that is caused from quenching
         heat = 0f;
     }
 
     private void Update()
     {
-        Debug.Log("Transform.position = " + transform.position);
-
         if (stress > 100f)
         {
             Destroy(this.gameObject);
         }
 
-        if (heat > 0)
+        if (heat > 0 && !quenched)
         {
             changeHeat(-0.5f * Time.deltaTime);
         }

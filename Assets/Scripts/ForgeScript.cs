@@ -6,12 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class ForgeScript : MonoBehaviour
 {
-    public float rateOfHeatChange;
-
     public float forgeTime;
-
     private metalScript metalScript;
-
 
     public void Update()
     {
@@ -37,8 +33,10 @@ public class ForgeScript : MonoBehaviour
                 metalScript.heatChangeColor = Color.Lerp(metalScript.heatChangeColor, metalScript.colorTargets[1], Mathf.PingPong(Time.deltaTime, metalScript.heat) / metalScript.heatColorFactor);
             }
 
-                metalScript.metalMaterial.color = metalScript.heatChangeColor;
-            Debug.Log("Color Change to:"+ metalScript.heatChangeColor);
+            metalScript.metalMaterial.color = metalScript.heatChangeColor;
+        } else
+        {
+            forgeTime = 0f;
         }
     }
 }

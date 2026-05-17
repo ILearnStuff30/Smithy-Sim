@@ -13,7 +13,7 @@ public class NewBehaviourScript : MonoBehaviour
     public AnvilScript anvilScript;
 
     // Stores what tags that the user will interact with as workstations
-    private string[] workstationTags = { "forge", "anvil", "workbench" };
+    private string[] workstationTags = { "forge", "anvil", "workbench", "quench" };
     public ArrayList collisionTags = new ArrayList();
 
     // Function to give or take back the metal using collider data, given it matches one of the workstation tags

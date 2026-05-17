@@ -18,13 +18,15 @@ public class GameManager : MonoBehaviour
             metal.transform.position = new Vector3 (0, 0.53f, 0);
         } else if (metalHolder.tag == "anvil")
         {
-            metalHolder.transform.position = new Vector3(0f, 0f, 0f);
+            metal.transform.position = new Vector3(0f, 0f, 0f);
         } else
         {
-            metalHolder.transform.position = new Vector3(0f, 0f, 0f);
+            metal.transform.position = new Vector3(0f, 0f, 0f);
         }
 
         metal.transform.rotation = relativeRotation;
+
+        Debug.Log("Gameobject reference: " + metal.tag);
     }
 
     private void Start()
