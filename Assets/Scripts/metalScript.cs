@@ -20,7 +20,24 @@ public class metalScript : MonoBehaviour
 
     public void changeHeat(float heatChange)
     { 
-        heat += heatChange;   
+        heat += heatChange;
+
+        if (heat >= 0f && heat < 25f)
+        {
+            // Lerp current colour to lowest colour
+        } else if (heat >= 25f && heat < 50f)
+        {
+
+        } else if (heat >= 50f && heat < 75f)
+        {
+
+        } else if (heat >= 50f && heat < 100f)
+        {
+
+        } else
+        {
+            Debug.Log("Error in calculating teperature colour");
+        }
     }
     public void changeStress(float stressChange)
     {

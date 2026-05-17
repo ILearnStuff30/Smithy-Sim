@@ -9,9 +9,9 @@ public class quenchBucketScript : MonoBehaviour
     public void Update()
     {
 
-        metalScript = this.gameObject.GetComponentInChildren<metalScript>();
 
-        if (metalScript != null && !metalScript.quenched)
+        metalScript = this.gameObject.GetComponentInChildren<metalScript>();
+        if (this.gameObject.GetComponentInChildren<metalScript>() != null && !metalScript.quenched)
         {
             Debug.Log("Quench");
             GetComponentInChildren<metalScript>().quench();

@@ -16,7 +16,7 @@ public class ForgeScript : MonoBehaviour
         {
             forgeTime += Time.deltaTime;
             // Funciton to increase the metal's temperature faster over time
-            metalScript.heat = Mathf.Pow(Mathf.Exp(1), forgeTime / 15);
+            metalScript.heat += (Mathf.Pow(Mathf.Exp(1), forgeTime / 15)) / 100;
 
             if (metalScript.heat > 50)
             {
