@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
         } else if (metalHolder.tag == "quench") {
             metal.transform.localPosition = new Vector3(0f, 0.44f, 0f);
-            metal.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            metal.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
         }
 
         // Disables the sphere collider to avoid bugs
