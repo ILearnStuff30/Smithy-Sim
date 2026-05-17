@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MoreMountains.Feedbacks;
 
 public class ForgeScript : MonoBehaviour
 {
     public float forgeTime;
     private metalScript metalScript;
+    public MMF_Player forgeFeedback;
 
     public void Update()
     {
         metalScript = this.gameObject.GetComponentInChildren<metalScript>();
         if (this.gameObject.GetComponentInChildren<metalScript>() != null)
         {
+            forgeFeedback?.PlayFeedbacks();
             forgeTime += Time.deltaTime;
             // Funciton to increase the metal's temperature faster over time
             metalScript.heat += (Mathf.Pow(Mathf.Exp(1), forgeTime / 15)) / 100;
@@ -26,6 +29,7 @@ public class ForgeScript : MonoBehaviour
 
         } else
         {
+            forgeFeedback?.StopFeedbacks(); 
             forgeTime = 0f;
         }
     }
