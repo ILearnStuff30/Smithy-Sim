@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -18,25 +19,25 @@ public class GameManager : MonoBehaviour
 
         if (metalHolder.tag == "forge") {
             metal.transform.localPosition = new Vector3(-0.2f, 1.165f, 0f);
-            metal.transform.localRotation = new Quaternion(0f, 90f, 0f, 0f);
+            metal.transform.rotation = Quaternion.Euler(90f, 90f, 0f);
 
         } else if (metalHolder.tag == "Player") {
             metal.transform.localPosition = Vector3.forward;
-            metal.transform.localRotation = new Quaternion(0f, 80f, -20f, 0f);
+            metal.transform.rotation = Quaternion.Euler(90f, 80f, -20f);
 
         } else if (metalHolder.tag == "anvil") {
-            metal.transform.localPosition = new Vector3(0f, 0f, 0.63f);
-            metal.transform.localRotation = new Quaternion(0f, 90f, 90f, 0f);
+            metal.transform.localPosition = new Vector3(0f, 0f, 0.65f);
+            metal.transform.rotation = Quaternion.Euler(-90f, 0f, 90f);
 
         } else if (metalHolder.tag == "quench") {
             metal.transform.localPosition = new Vector3(0f, 0.44f, 0f);
-            metal.transform.localRotation = new Quaternion(90f, 90f, -90f, 0f);
+            metal.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
 
         // Disables the sphere collider to avoid bugs
         metal.GetComponent<SphereCollider>().enabled = false;
 
-        Debug.Log(metal.transform.position);
+        Debug.Log(metal.transform.rotation);
     }
 
     private void Start()

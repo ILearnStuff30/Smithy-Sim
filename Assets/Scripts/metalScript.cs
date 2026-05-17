@@ -7,16 +7,21 @@ public class metalScript : MonoBehaviour
 {
 
     // Measured in degrees celcius. Room temperature is 20-22 degrees Celcius.
-    public float heat, stress, completion = 0;
-    public float heatColorFactor, rateOfColourChange;
+    public float heat, stress, completion, delayCount = 0;
+    public float rateOfColourChange;
 
     public bool quenched = false;
 
     public Color[] colorTargets;
     public Color heatChangeColor;
 
+    private MeshFilter myMeshFilter;
+    public Mesh[] completionMeshes;
+
     public Material metalMaterial;
 
+    public AudioSource myAudioSource;
+    public AudioClip breakingClip;
 
     public void changeHeat(float heatChange)
     { 
@@ -55,6 +60,41 @@ public class metalScript : MonoBehaviour
     public void changeCompletion(float completionChange)
     {
         completion += completionChange;
+
+        if (completion >= 0f && completion < 10f) {
+            myMeshFilter.mesh = completionMeshes[0];
+        }
+        else if (completion >= 10f && completion < 20f) {
+            myMeshFilter.mesh = completionMeshes[1];
+        }
+        else if (completion >= 20f && completion < 30f) {
+            myMeshFilter.mesh = completionMeshes[2];
+        }
+        else if (completion >= 30f && completion < 40f) {
+            myMeshFilter.mesh = completionMeshes[3];
+        }
+        else if (completion >= 40f && completion < 50f) {
+            myMeshFilter.mesh = completionMeshes[4];
+        }
+        else if (completion >= 50f && completion < 60f) {
+            myMeshFilter.mesh = completionMeshes[5];
+        }
+        else if (completion >= 60f && completion < 70f) {
+            myMeshFilter.mesh = completionMeshes[6];
+        }
+        else if (completion >= 70f && completion < 80f) {
+            myMeshFilter.mesh = completionMeshes[7];
+        }
+        else if (completion >= 80f && completion < 100f)
+        {
+            myMeshFilter.mesh = completionMeshes[8];
+        }
+        else if (completion >= 100f) {
+            myMeshFilter.mesh = completionMeshes[9];
+        }
+        else {
+            Debug.Log("Error in calculating teperature colour");
+        }
     }
     public void quench()
     {
@@ -66,7 +106,7 @@ public class metalScript : MonoBehaviour
     private void Start()
     {
         heatChangeColor = colorTargets[0];
-        
+        myMeshFilter = GetComponent<MeshFilter>();
     }
     private void Update()
     {
@@ -76,6 +116,12 @@ public class metalScript : MonoBehaviour
         // destroy the material if it is too stressed
         if (stress > 100f)
         {
+            myAudioSource.PlayOneShot(breakingClip);
+            while (delayCount < 2f)
+            {
+                delayCount += Time.deltaTime;
+            }
+            delayCount = 0;
             Destroy(this.gameObject);
         }
 

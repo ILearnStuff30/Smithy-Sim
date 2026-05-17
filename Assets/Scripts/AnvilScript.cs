@@ -18,11 +18,11 @@ public class AnvilScript : MonoBehaviour
             anvilFeedback?.PlayFeedbacks();
             Debug.Log("Hammered");
             // Math to change the stress of the material depending on how hot the weapon is (never changing this by a negative)
-            metalScript.stress += Mathf.Max(((0.5f * metalScript.heat) - 12.5f), 0f);
+            metalScript.stress += Mathf.Max(((0.33f * metalScript.heat) - 15f), 0f);
             if (metalScript.heat > 20f)
             {
                 // Math to change the completion based on the temperature of the material
-                metalScript.completion += (metalScript.heat - 20) / 4f;
+                metalScript.changeCompletion((metalScript.heat - 20) / 4f);
             }
 
             // Function to change the shape of the material
