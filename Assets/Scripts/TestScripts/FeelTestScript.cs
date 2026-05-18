@@ -44,7 +44,7 @@ public class FeelTestScript : MonoBehaviour
         }
 
         // if we're jumping, were going down last frame, and have now reached an almost null velocity
-        if (_jumping && (_velocityLastFrame < 0) && (Mathf.Abs(_rigidbody.velocity.y) < _lowVelocity))
+        if (_jumping && (_velocityLastFrame < 0) && (Mathf.Abs(_rigidbody.linearVelocity.y) < _lowVelocity))
         {
             // then we just landed, we reset our state
             _jumping = false;
@@ -52,7 +52,7 @@ public class FeelTestScript : MonoBehaviour
         }
 
         // we store our velocity
-        _velocityLastFrame = _rigidbody.velocity.y;
+        _velocityLastFrame = _rigidbody.linearVelocity.y;
     }
 
     /// <summary>

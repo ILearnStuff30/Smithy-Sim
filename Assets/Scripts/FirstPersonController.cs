@@ -42,13 +42,13 @@ public class FirstPersonController : MonoBehaviour
 
         if(isGrounded)
         {
-            rb.drag = playerDrag;
+            rb.linearDamping = playerDrag;
             canJump = true;
         }
         else
         {
             canJump = false;
-            rb.drag = 0;
+            rb.linearDamping = 0;
         }
 
         SpeedControl();
@@ -71,12 +71,12 @@ public class FirstPersonController : MonoBehaviour
 
     private void SpeedControl()
     {
-        Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        Vector3 flatVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
         
         if(flatVelocity.magnitude > speed)
         {
             Vector3 limitedVelocity = flatVelocity.normalized * speed;
-            rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
+            rb.linearVelocity = new Vector3(limitedVelocity.x, rb.linearVelocity.y, limitedVelocity.z);
         }
     }
 
